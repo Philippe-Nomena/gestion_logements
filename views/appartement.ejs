@@ -1,0 +1,332 @@
+<htmllang="en">
+    <header>
+
+        <head>
+
+            <meta charset="utf-8">
+            <title>Vous êtes sur le page d'appartement</title>
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+            <style>
+                /* Remove the navbar's default margin-bottom and rounded borders */
+                .navbar {
+                    margin-bottom: 0;
+                    border-radius: 0;
+                }
+
+                /* Add a gray background color and some padding to the footer */
+                footer {
+                    background-color: #f2f2f2;
+                    padding: 25px;
+                }
+                body{
+                    background-color: rgb(121, 116, 116);
+                }
+                table{
+                    background-color: rgb(175, 175, 175);
+                }
+                th{
+                    background-color: rgb(155, 138, 206);
+                }
+            </style>
+        </head>
+
+        <body>
+          
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div2 class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                    </div2>
+                    <div1 class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a class="navbar-brand" href="/index">
+                                <span class="glyphicon glyphicon-home"></span> Page d'accueil</a></li>
+                            <li><a href="/locataire">
+                             <span></span> Locataire</a></li>
+                            <li><a href="/louer">
+                             <span ></span> Louer</a></li>
+                          </ul>
+                    </div1>
+                </div>
+            </nav>
+    </header>
+
+    <body>
+    
+        
+        <div class="container">
+            <center>
+                <h2>Page d'appartement</h2>
+            </center>
+            <button1 class="btn btn-success add" datatoggle="modal" data-target="#myModalAdd"><span
+                    class="glyphicon glyphicon-plus"> </span> Ajouter</button1><br><br>
+                    <div>
+                        <input type="text" datatoggle="modal" id="search"
+                            name="search" placeholder="Numero ou Nom ...">
+                    </div>
+            <br />
+            <table class="table table-bordered" id="mytable">
+                <thead>
+                    <tr>
+                        <th>Numero d'appartement</th>
+                        <th>Designation</th>
+                        <th>Lieu</th>
+                        <th>Loyer Mensuel</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <% if (test) {%>
+                        <% test.forEach(function(lecteur){%>
+                            <tr>
+                                <td>
+                                    <%=lecteur.Num_app%>
+                                </td>
+                                <td>
+                                    <%=lecteur.Designation%>
+                                </td>                                <td>
+                                    <%=lecteur.lieu%>
+                                </td>
+                                </td>                                <td>
+                                    <%=lecteur.loyer_mensuel%>
+                                </td>
+                                <td>
+                                    <a1 href="javascript:void(0);" class="btn btn-sm btn-info edit"
+                                        data-numappar="<%=lecteur.Num_app%>" data-designation="<%=lecteur.Designation%>" 
+                                        data-lieu="<%=lecteur.lieu%>"
+                                        data-loyermensuel="<%=lecteur.loyer_mensuel%>"
+                                        >
+                                        <span class="glyphicon glyphicon-edit"></span> Editer
+                                    </a1>
+                                    <a1 href="javascript:void(0);" class="btn btn-sm btn-danger delete"
+                                        data-numappar="<%=lecteur.Num_app%>">
+                                        <span class="glyphicon glyphicon-trash"></span> Supprimer
+                                    </a1>
+                                </td>
+                            </tr>
+                            <%})%>
+                            <%}%>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal Add Product-->
+        <form action="/appartement/ajout" method="post">
+            <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <Strong>
+                                <h2 class="modal-title" id="exampleModalLabel">Ajouter un nouveau appartement</h2>
+                            </Strong>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="text" name="Num_appartement_add" class="form-control"
+                                    placeholder="Numero Appartement" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="designation_add" class="form-control" placeholder="Designation"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="lieu_add" class="form-control" placeholder="Lieu"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="loyer_mensuel_add" class="form-control" placeholder="Loyer Mensuel"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok"></span> Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal Update Product-->
+        <form action="/appartement/modifier" method="post">
+            <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong>
+                                <h2 class="modal-title" id="exampleModalLabel">Edit Appartement</h2>
+                            </strong>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="num">Numero d'appartement</label>
+                            <div class="form-group">
+                                <input type="text" name="Num_app" value="%Num_app%" class="form-control Num_app"
+                                    placeholder="Numero appartement" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Designation</label>
+                                <input type="text" name="Designation" class="form-control Designation" placeholder="Designation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="adr">Lieu</label>
+                                <input type="text" name="lieu" class="form-control Lieu" placeholder="Lieu" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="adr">Loyer Mensuel</label>
+                                <input type="number" name="loyer_mensuel" class="form-control Loyer_mensuel" placeholder="Loyer Mensuel" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-check"></span> Modifier</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal Delete Product-->
+        <form id=" add-row-form" action="/appartement/supprimer" method="post">
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Supprimer appartement</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                          
+                            <strong>Vous etes sur le point de supprimer </strong>
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="Num_app" class="form-control Num_app2" required>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.js"></script>
+        <script>
+
+            $(document).ready(function () {
+                //showing data to edit modal
+
+                $('#mytable').on('click', '.edit', function () {
+                    var Num_app = $(this).data('numappar');
+                    var Designation = $(this).data('designation');
+                    var Lieu = $(this).data('lieu');
+                    var Loyer_mensuel = $(this).data('loyermensuel');
+                   
+                    $('#EditModal').modal('show');
+                    $('.Loyer_mensuel').val(Loyer_mensuel);
+                    $('.Lieu').val(Lieu);
+                    $('.Designation').val(Designation);
+                    $('.Num_app').val(Num_app);
+                });
+                //showing add record modal
+                $('.add').click(function () {
+                    $('#myModalAdd').modal('show')
+                })
+                //search 
+                $(document).ready(function () {
+                    $("#search").on("keyup", function () {
+                        var value = $(this).val().toLowerCase();
+                        $("#mytable tr").filter(function () {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+
+                //showing delete record modal
+                $('#mytable').on('click', '.delete', function () {
+                    var Num_app = $(this).data('numappar');
+                    $('#DeleteModal').modal('show');
+                    $('.Num_app2').val(Num_app);
+                });
+            });
+        </script>
+        <style>
+            header {
+                font-style: italic;
+                background-color: rgb(235, 223, 223);
+            }
+
+            
+
+            body {
+                font-style: italic;
+                background-color: White(229, 149, 149);
+            }
+
+            ::-ms-thumb {
+                background-color: black
+            }
+
+            div1 {
+                width: 100px;
+                height: 100px;
+                position: relative;
+   
+            }
+
+            a1 {
+                position: relative;
+               
+            }
+            th{
+                text-align: center;
+            }
+
+            h2 {
+                position: relative;
+                
+            }
+            table{
+                text-align: center;
+            }
+
+            button1 {
+                position: relative;
+               
+                animation: mymove 5s;
+            }
+
+            input[type=text]:focus {
+                background-color: lightblue;
+            }
+
+
+        </style>
+    </body>
+
+    </html>

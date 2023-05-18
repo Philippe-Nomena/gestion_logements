@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Vous etes sur la page d'accueil</title>
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style>
+      /* Remove the navbar's default margin-bottom and rounded borders */
+      .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+
+      /* Add a gray background color and some padding to the footer */
+      footer {
+        background-color: #f2f2f2;
+        padding: 25px;
+      }
+    </style>
+  </head>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.js"></script>
+  <script>
+   $(document).ready(function(){
+     $('#propos').on('click', function(){
+       $('#mytable').toggle(3000)
+       $('#my').toggle(3000)
+     })
+     $('.edit').click(function () {
+                    $('#EditModal').modal('show')
+                });
+   });
+    </script>
+
+<body>  
+  <nav class="navbar navbar-inverse">
+    <div1 class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+         <span class="glyphicon glyphicon-home"></span> Page d'accueil</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="locataire">
+           <span></span> Locataire</a></li>
+
+          <li><a href="/appartement">
+           <span></span> Appartement</a></li>
+          <li><a href="/louer">
+           <span ></span> Louer</a></li>
+        </ul>
+
+        
+      </div>
+    </div1>
+  </nav><br />
+ 
+  <style>
+    h3 {
+    background-color: lightgrey;
+    width: 600px;
+    padding: 25px;
+    border: 25px solid rgb(12, 12, 19);
+    margin: 25px;
+}
+
+body{
+  background-color: rgb(121, 116, 116);
+  background-image: url('/public/img/mg.png');
+}
+h4 {
+    background-color: lightgrey;
+    width: 600px;
+    padding: 25px;
+    border: 25px solid rgb(12, 12, 19);
+    margin: 25px;
+}
+    div1 {
+      position: relative;
+      -webkit-animation: mymove 5s;
+      animation: mymove 5s;
+    }
+
+
+  </style>
+  </body>
+</html>

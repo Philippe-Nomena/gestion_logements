@@ -1,0 +1,318 @@
+<htmllang="en">
+    <header>
+
+        <head>
+
+            <meta charset="utf-8">
+            <title>Vous êtes sur le page de locataire</title>
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+            <style>
+                /* Remove the navbar's default margin-bottom and rounded borders */
+                .navbar {
+                    margin-bottom: 0;
+                    border-radius: 0;
+                }
+
+                /* Add a gray background color and some padding to the footer */
+                footer {
+                    background-color: #f2f2f2;
+                    padding: 25px;
+                }
+                body{
+                    background-color: rgb(121, 116, 116);
+                }
+                table{
+                    background-color: rgb(175, 175, 175);
+                }
+                th{
+                    background-color: rgb(155, 138, 206);
+                }
+            </style>
+        </head>
+
+        <body>
+          
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div2 class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                    </div2>
+                    <div1 class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a class="navbar-brand" href="/index">
+                                <span class="glyphicon glyphicon-home"></span> Page d'accueil</a></li>
+                            <li><a href="/appartement">
+                             <span></span> Appartement</a></li>
+                            <li><a href="/louer">
+                             <span ></span> Louer</a></li>
+                          </ul>
+                    </div1>
+                </div>
+            </nav>
+    </header>
+
+    <body>
+    
+        
+        <div class="container">
+            <center>
+                <h2>Page de Lecteur</h2>
+            </center>
+            <button1 class="btn btn-success add" datatoggle="modal" data-target="#myModalAdd"><span
+                    class="glyphicon glyphicon-plus"> </span> Ajouter</button1><br><br>
+                    <div>
+                        <input type="text" datatoggle="modal" id="search"
+                            name="search" placeholder="Numero ou Nom ...">
+                    </div>
+            <br />
+            <table class="table table-bordered" id="mytable">
+                <thead>
+                    <tr>
+                        <th>Numero de Locataire</th>
+                        <th>Nom du Locataire</th>
+                        <th>Adresse</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <% if (test) {%>
+                        <% test.forEach(function(lecteur){%>
+                            <tr>
+                                <td>
+                                    <%=lecteur.Num_locataire%>
+                                </td>
+                                <td>
+                                    <%=lecteur.Nom%>
+                                </td>                                <td>
+                                    <%=lecteur.Adresse%>
+                                </td>
+                                <td>
+                                    <a1 href="javascript:void(0);" class="btn btn-sm btn-info edit"
+                                        data-numlocataire="<%=lecteur.Num_locataire%>" 
+                                        data-nom="<%=lecteur.Nom%>" 
+                                        data-adresse="<%=lecteur.Adresse%>"
+                                        >
+                                        <span class="glyphicon glyphicon-edit"></span> Editer
+                                    </a1>
+                                    <a1 href="javascript:void(0);" class="btn btn-sm btn-danger delete"
+                                        data-numlocataire="<%=lecteur.Num_locataire%>">
+                                        <span class="glyphicon glyphicon-trash"></span> Supprimer
+                                    </a1>
+                                </td>
+                            </tr>
+                            <%})%>
+                            <%}%>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal Add Product-->
+        <form action="/locataire/ajout" method="post">
+            <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <Strong>
+                                <h2 class="modal-title" id="exampleModalLabel">Ajouter un nouveau Locataire</h2>
+                            </Strong>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="text" name="Num_locataire_add" class="form-control"
+                                    placeholder="Numero Locataire" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Nom_add" class="form-control" placeholder="Nom Locataire"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Adresse_add" class="form-control" placeholder="Adresse"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok"></span> Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal Update Product-->
+        <form action="/locataire/modifier" method="post">
+            <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong>
+                                <h2 class="modal-title" id="exampleModalLabel">Edit Locataire</h2>
+                            </strong>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="num">Numero de Locataire</label>
+                            <div class="form-group">
+                                <input type="text" name="Num_locataire" value="%Num_locataire%" class="form-control Num_locataire"
+                                    placeholder="Numero Lecteur" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" name="Nom" class="form-control Nom" placeholder="Nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="adr">Adresse</label>
+                                <input type="text" name="Adresse" class="form-control Adresse" placeholder="Adresse" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-check"></span> Modifier</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal Delete Product-->
+        <form id=" add-row-form" action="/locataire/supprimer" method="post">
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Supprimer Locataire</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                          
+                            <strong>Vous etes sur le point de supprimer </strong>
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="Num_locataire" class="form-control Num_locataire2" required>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Fermer</button>
+                            <button type="submit" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.js"></script>
+        <script>
+
+            $(document).ready(function () {
+                //showing data to edit modal
+
+                $('#mytable').on('click', '.edit', function () {
+                    var Num_locataire = $(this).data('numlocataire');
+                    var Nom = $(this).data('nom');
+                    var Adresse = $(this).data('adresse');
+                   
+                    $('#EditModal').modal('show');
+                    $('.Adresse').val(Adresse);
+                    $('.Nom').val(Nom);
+                    $('.Num_locataire').val(Num_locataire);
+                });
+                //showing add record modal
+                $('.add').click(function () {
+                    $('#myModalAdd').modal('show')
+                })
+                //search 
+                $(document).ready(function () {
+                    $("#search").on("keyup", function () {
+                        var value = $(this).val().toLowerCase();
+                        $("#mytable tr").filter(function () {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+
+                //showing delete record modal
+                $('#mytable').on('click', '.delete', function () {
+                    var Num_locataire = $(this).data('numlocataire');
+                    $('#DeleteModal').modal('show');
+                    $('.Num_locataire2').val(Num_locataire);
+                });
+            });
+        </script>
+        <style>
+            header {
+                font-style: italic;
+                background-color: rgb(235, 223, 223);
+            }
+
+            
+
+            body {
+                font-style: italic;
+                background-color: White(229, 149, 149);
+            }
+
+            ::-ms-thumb {
+                background-color: black
+            }
+
+            div1 {
+                width: 100px;
+                height: 100px;
+                position: relative;
+   
+            }
+
+            a1 {
+                position: relative;
+               
+            }
+            th{
+                text-align: center;
+            }
+
+            h2 {
+                position: relative;
+                
+            }
+            table{
+                text-align: center;
+            }
+
+            button1 {
+                position: relative;
+               
+                animation: mymove 5s;
+            }
+
+            input[type=text]:focus {
+                background-color: lightblue;
+            }
+
+
+        </style>
+    </body>
+
+    </html>
